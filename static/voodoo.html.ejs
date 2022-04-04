@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, minimum-scale=1">
+    <title>Voodoo Playable Title</title>
+    <style>
+        * {
+            user-select: none;
+        }
+
+        html, body {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+            min-width: 1px;
+            min-height: 1px;
+            overflow: hidden;
+
+            margin: 0;
+            font-family: Helvetica, Arial, sans-serif;
+            background: #444
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -5;
+        }
+
+        #three-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -10;
+        }
+
+        /*    canvas {z-index: 0;position: fixed;} */
+        @keyframes loading {
+            0% {
+                border-radius: 5px;
+
+                transform: rotate(0)
+            }
+            50% {
+                border-radius: 20px;
+
+                transform: rotate(45deg)
+            }
+            100% {
+                border-radius: 5px;
+
+                transform: rotate(90deg)
+            }
+        }
+
+        #loading {
+            z-index: 300;
+
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+            height: 100vh;
+
+            color: #FFF;
+
+            background: #000;
+            flex-direction: column
+        }
+
+        .loader {
+            width: 30px;
+            height: 30px;
+
+            border: 5px solid;
+            animation: loading 1s ease infinite
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        #loading {
+            z-index: 600;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #click-to-store {
+            z-index: 1;
+
+            display: none;
+
+            width: 100%;
+            height: 50px;
+
+            padding-top: 22px;
+
+            font-size: 25px;
+            color: white;
+            text-align: center;
+
+            background-color: blue;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+        }
+
+        #end-screen {
+            user-select: none;
+            z-index: 0 !important;
+        }
+
+    </style>
+
+    <!-- CUSTOM_CSS -->
+    <!-- API_SCRIPT -->
+    <!-- API_ID -->
+
+</head>
+<body>
+
+<script>
+  /* BEGIN OF CONFIG */
+  config = __CONFIG__;
+  /* END OF CONFIG */
+
+
+</script>
+
+<div id="click-to-store">
+    Click to Store !
+</div>
+
+<div id="three-container">
+    <div id="container">
+    </div>
+</div>
+
+
+<!-- CUSTOM_HTML -->
+<!-- CUSTOM_JS -->
+<!-- GAMEPLAY -->
+<script type="text/javascript">
+  function gameStart() {
+    console.log("start");
+  }
+
+  function gameClose() {
+    console.log("close");
+  }
+
+  function launchPlayable() {
+    if (__USE_DEV_MODE__) {
+      window._voodooProvider = "tapjoy";
+    }
+
+    if (window.showEndCard = function () {
+      console.log("endCard tapjoy");
+    }, "tapjoy" == window._voodooProvider) {
+      if (window.TJ_API) {
+        var o = Math.floor(1e5 * Math.random());
+        window.TJ_API.setPlayableBuild("PLAYABLE-" + o), window.TJ_API.setPlayableAPI({
+          skipAd: function () {
+            console.log("skipAd");
+          },
+        }), window._voodooExit = function () {
+          window._lockStore || (window._lockStore = !0, window.TJ_API.objectiveComplete(), window.TJ_API.gameplayFinished(), window.TJ_API.click(), setTimeout(function () {
+            window._lockStore = !1;
+          }, 500), window._gameplayEvents.endLevelAfterStore());
+        };
+      }
+      console.log("%c  VOODOO AD  %c  adwords ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;");
+    }
+    "adwords" == window._voodooProvider && (window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, ExitApi.exit(), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, console.log("%c  VOODOO AD  %c  adwords ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;")), "voodooads" == window._voodooProvider && (window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, VAPlayableAds.voodooAdsExit(), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, console.log("%c  VOODOO AD  %c  voodooads ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;")), "editor" == window._voodooProvider && (window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), alert("Success!\nWhen the player clicks here, he/she will be redirected to the Store page."), window._gameplayEvents.endLevelAfterStore("editor"));
+    }, console.log("%c  VOODOO AD  %c  editor ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;")), "facebook" == window._voodooProvider && (window._voodooExit = function (o) {
+      window._lockStore || (window._lockStore = !0, setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), "undefined" != typeof FbPlayableAd ? (FbPlayableAd.onCTAClick(), window._gameplayEvents.endLevelAfterStore()) : (document.getElementById("click-to-store").style.display = "block", setTimeout(function () {
+        document.getElementById("click-to-store").style.display = "none";
+      }, 1e3), window._gameplayEvents.endLevelAfterStore("editor")));
+    }), "applovin" != window._voodooProvider && "unityads" != window._voodooProvider || (void 0 !== window.mraid ? window.mraid.addEventListener("ready", mraidReady) : (console.log("%c  VOODOO AD  %c  no mraid", "background:darkslateblue;color:white", "background:white;color:crimson;"), window._voodooExit = function () {
+      document.getElementById("click-to-store").style.display = "block", setTimeout(function () {
+        document.getElementById("click-to-store").style.display = "none";
+      }, 1e3), window._gameplayEvents.endLevelAfterStore("editor");
+    }, _initPlayable({}), _initFirstView())), "adcolony" == _voodooProvider && (/android/i.test(navigator.userAgent) ? window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, window.mraid.open(window._voodooANDROID), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    } : window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, window.mraid.open(window._voodooIOS), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, _initPlayable({}), _initFirstView()), "vungle" == window._voodooProvider && (window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, window.parent.postMessage("download", "*"), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, console.log("%c  VOODOO AD  %c  vungle ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;")), "ironsource" == window._voodooProvider && (dapi.isReady() ? dapiReady() : dapi.addEventListener("ready", dapiReady)), "mintegral" == window._voodooProvider && (window.gameReady && window.gameReady(), window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window.gameEnd && window.gameEnd(), window.install && window.install(), window._gameplayEvents.endLevelAfterStore());
+    }), "tiktok" == window._voodooProvider && (window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window.playableSDK.openAppStore(), window._gameplayEvents.endLevelAfterStore());
+    });
+  }
+
+  function _initPlayable(o) {
+    window._gameplay.isInit || (window._gameplay.isInit = !0, window._gameplayEvents.initGame(o), "function" == typeof window.showStartScreen && window.showStartScreen());
+  }
+
+  function _initFirstView() {
+    window._gameplay.isFirstView || (window._gameplay.isFirstView = !0, "function" == typeof window.showStartScreen && window.showStartScreen(), window._gameplayEvents.checkAutoStart());
+  }
+
+  function dapiReady() {
+    dapi.removeEventListener("ready", dapiReady), _initPlayable(dapi.getScreenSize()), dapi.isViewable() && _initFirstView(), dapi.addEventListener("viewableChange", adVisibleCallback.bind(this)), dapi.addEventListener("adResized", function (o) {
+      window._gameplayEvents.playableResize(o);
+    }), dapi.getAudioVolume(), dapi.addEventListener("audioVolumeChange", function (o) {
+      console.log("volumeChange");
+    }), window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, dapi.openStoreUrl(), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, console.log("%c  VOODOO AD  %c  ironSource ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;");
+  }
+
+  function adVisibleCallback(o) {
+    if (o.isViewable) {
+      var e = dapi.getScreenSize();
+      window._gameplayEvents.playableResize(e), _initFirstView(), window._gameplayEvents.paused(!1);
+    } else window._gameplayEvents.paused(!0);
+  }
+
+  function mraidReady() {
+    _initPlayable(window.mraid.getScreenSize()), window.mraid.isViewable() && _initFirstView(), window.mraid.addEventListener("sizeChange", function (o, e) {
+      var i = {width: o, height: e};
+      window._gameplayEvents.playableResize(i), setTimeout(function () {
+        var o = window.mraid.getScreenSize();
+        window._gameplayEvents.playableResize(o);
+      }, 250);
+    }), window.mraid.addEventListener("viewableChange", function (o) {
+      if (o) {
+        var e = window.mraid.getScreenSize();
+        window._gameplayEvents.playableResize(e), _initFirstView(), window._gameplayEvents.paused(!1);
+      } else window._gameplayEvents.paused(!0);
+    }), /android/i.test(navigator.userAgent) ? window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, window.mraid.open(window._voodooANDROID), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    } : window._voodooExit = function () {
+      window._lockStore || (window._lockStore = !0, window.mraid.open(window._voodooIOS), setTimeout(function () {
+        window._lockStore = !1;
+      }, 500), window._gameplayEvents.endLevelAfterStore());
+    }, console.log("%c  VOODOO AD  %c  " + window._voodooProvider + " ok", "background:darkslateblue;color:white", "background:white;color:darkslateblue;");
+  }
+
+  function orientation() {
+    window._gameplayEvents && window._gameplayEvents.playableResize(), document.body.clientWidth > document.body.clientHeight ? (document.body.classList.remove("portrait"), document.body.classList.add("landscape")) : (document.body.classList.remove("landscape"), document.body.classList.add("portrait"));
+  }
+
+  function init() {
+    window._lockStore = !1, launchPlayable(), "ironsource" != window._voodooProvider && "applovin" != window._voodooProvider && "unityads" != window._voodooProvider && "adcolony" != window._voodooProvider && (_initPlayable({}), _initFirstView()), window.onresize = orientation, orientation();
+
+  }
+
+  if (__USE_DEV_MODE__) {
+    window.onload = function () {
+      init();
+    }
+  } else {
+    init();
+  }
+
+
+</script>
+</body>
+</html>

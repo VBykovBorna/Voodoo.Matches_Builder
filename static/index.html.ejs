@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="~">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover,minimal-ui" />
+
+    <script>
+        window.notifyProgress = function (loaded, total) {
+            var prg = document.getElementById('progress-bar-fill');
+
+            var val = (loaded / total * 100);
+            prg.style.width = val + '%';
+        }
+
+        function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+            var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+            return { width: srcWidth * ratio, height: srcHeight * ratio };
+        };
+
+        function onResize() {
+            var padding = 40;
+            var halfPadding = padding * 0.5;
+            var progressHeight = 120;
+            var size = 256;
+            var innerWidth = window.innerWidth - padding;
+            var innerHeight = window.innerHeight - padding;
+            var verticalCenter = 0.333;
+
+            var ratio = calculateAspectRatioFit(size, size, innerWidth, innerHeight - progressHeight);
+
+            var newWidth = Math.min(ratio.width, size);
+            var newHeight = Math.min(ratio.height, size);
+
+            var newTop = (innerHeight - newHeight) * verticalCenter;
+
+            var el = document.getElementById('top-container');
+            el.style.width = newWidth + 'px';
+            el.style.height = newHeight + 'px';
+            el.style.top = newTop + 'px';
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            window.addEventListener('resize', onResize);
+            onResize();
+
+            document.body.style.overflow = 'hidden';
+        });
+    </script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            min-width: 1px;
+            min-height: 1px;
+            -webkit-user-select: none;
+            overflow: hidden;
+            margin: 0 0 1px 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #three-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: auto;
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+        #splash-screen {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background: #000;
+            overflow: hidden;
+            display: none
+        }
+
+        #loading-text {
+            position: absolute;
+            width: 256px;
+            top: 300px;
+            height: 40px;
+            color: #fff;
+            font-size: 20px;
+            font-family: monospace;
+            text-align: center;
+            font-size: 1.8em;
+            overflow: visible;
+            white-space: nowrap;
+            text-transform: uppercase;
+            color: #FFD700;
+        }
+
+        #top-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 100px;
+            min-height: 100px;
+        }
+
+        #icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 25%;
+
+            border: 5px solid #FFD700;
+            background-image: url("<%=require('/static/icon.jpg')%>");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            box-sizing: border-box;
+            -webkit-box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.4);
+        }
+
+        .icon_blur {
+            position: absolute;
+            filter: blur(96px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(0.8);
+            }
+        }
+
+        #borna {
+            display: inline-block;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            bottom: 0;
+            right: 0;
+
+            background-image: url("<%=require('/static/borna.svg')%>");
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 62%;
+        }
+
+        .pb-wrapper {
+            position: absolute;
+            bottom: -45px;
+            left: 33%;
+            right: 33%;
+            box-sizing: border-box;
+        }
+
+        .progress-bar {
+            box-sizing: border-box;
+            width: 100%;
+            background-color: black;
+            border: 2px solid #FFD700;
+            padding: 3px;
+            border-radius: 16px;
+        }
+
+        #progress-bar-fill {
+            box-sizing: border-box;
+            display: block;
+            height: 8px;
+            border-radius: 16px;
+            background-color: #FFD700;
+            transition: width 500ms ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        /* BEGIN OF CONFIG */
+        config = __CONFIG__;
+
+        /* END OF CONFIG */
+    </script>
+
+    <div id="three-container">
+    </div>
+    <div id="container">
+    </div>
+
+    <div id="splash-screen">
+        <div id="top-container">
+            <div id="icon" class="icon_blur"></div>
+            <div id="icon"></div>
+            <div class="pb-wrapper">
+                <div class="progress-bar">
+                    <span id="progress-bar-fill" style="width: 0%;"></span>
+                </div>
+            </div>
+        </div>
+        <div id="borna"></div>
+    </div>
+</body>
+
+</html>

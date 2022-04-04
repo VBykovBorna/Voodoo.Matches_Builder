@@ -1,0 +1,207 @@
+{
+  "_version": 2,
+  "_modules": {
+    "header": {
+      "id": 1
+    },
+    "footer": {
+      "id": 1
+    },
+    "endScreen": {
+      "id": 1
+    },
+    "startScreen": {
+      "id": 0,
+      "config": {
+        "wording": {
+          "en": ""
+        },
+        "startAnimation": "bounceH1StartScreen",
+        "startSpeedAnimation": 1.6,
+        "handAnimation": "none",
+        "handSpeedAnimation": 1.6,
+        "wordingPos": 57,
+        "wordingSize": 0.8,
+        "hand": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYAQMAAACEqAqfAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAENJREFUeNrtwQENAAAAwiD7pzbHN2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEHsiAAATqptW8AAAAASUVORK5CYII="
+      }
+    },
+    "retryScreen": {
+      "id": 2
+    }
+  },
+  "general": {
+    "_name": "General",
+    "langs": {
+      "type": "array",
+      "name": "Languages",
+      "value": [
+        "en"
+      ]
+    },
+    "name": {
+      "type": "text",
+      "name": "Name of the game",
+      "value": "2 THE MOON"
+    },
+    "icon": {
+      "type": "media",
+      "name": "Icon of the game",
+      "value": ""
+    },
+    "ios": {
+      "type": "text",
+      "name": "AppStore link",
+      "info": "For iOS",
+      "value": "https://apps.apple.com/in/app/2-the-moon/id1567263014"
+    },
+    "android": {
+      "type": "text",
+      "name": "PlayStore link",
+      "info": "For Android",
+      "value": "https://play.google.com/store/apps/details?id=com.gnarcade.doge"
+    }
+  },
+  "creative": {
+    "_name": "Creative",
+    "timerEndScreen": {
+      "type": "range",
+      "name": "Timer end screen",
+      "value": 19,
+      "min": 3,
+      "max": 60
+    },
+    "redirectionAfterClick": {
+      "type": "range",
+      "name": "Redirection After X click",
+      "value": 7,
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
+    "nbRetry": {
+      "type": "range",
+      "name": "Retry number",
+      "value": 0,
+      "min": 0,
+      "max": 10
+    }
+  },
+  "endLevel": {
+    "_name": "End Level",
+    "available": {
+      "type": "select",
+      "name": "Available as End Screen",
+      "value": true,
+      "options": [
+        {
+          "name": "Yes",
+          "value": true
+        },
+        {
+          "name": "No",
+          "value": false
+        }
+      ]
+    },
+    "restartAfterStore": {
+      "type": "select",
+      "name": "Available After Store",
+      "value": true,
+      "options": [
+        {
+          "name": "Yes",
+          "value": true
+        },
+        {
+          "name": "No",
+          "value": false
+        }
+      ]
+    },
+    "delay": {
+      "type": "range",
+      "name": "Restart delay(in second)",
+      "value": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.5
+    },
+    "paused": {
+      "type": "select",
+      "name": "Paused level",
+      "value": false,
+      "options": [
+        {
+          "name": "Yes",
+          "value": true
+        },
+        {
+          "name": "No",
+          "value": false
+        }
+      ]
+    }
+  },
+  "advanced": {
+    "_name": "Advanced",
+    "filter": {
+      "type": "select",
+      "name": "Filter",
+      "value": "none",
+      "options": [
+        {
+          "name": "No filter",
+          "value": "none"
+        },
+        {
+          "name": "Greyscale",
+          "value": "grayscale(100%)"
+        },
+        {
+          "name": "Sepia",
+          "value": "sepia(70%)"
+        },
+        {
+          "name": "Invert",
+          "value": "invert(100%)"
+        },
+        {
+          "name": "Hue 1",
+          "value": "hue-rotate(-90deg)"
+        },
+        {
+          "name": "Hue 2",
+          "value": "hue-rotate(90deg)"
+        }
+      ]
+    },
+    "font": {
+      "type": "media",
+      "name": "Custom Font",
+      "value": " "
+    },
+    "autoStart": {
+      "name": "Auto Start",
+      "value": false,
+      "type": "select",
+      "options": [
+        {
+          "value": true,
+          "name": "True"
+        },
+        {
+          "value": false,
+          "name": "False"
+        }
+      ]
+    },
+    "autoStartDelay": {
+      "type": "range",
+      "name": "Auto Start Delay (in second)",
+      "value": 3.5,
+      "min": 0.5,
+      "max": 10,
+      "step": 0.5
+    }
+  }
+}

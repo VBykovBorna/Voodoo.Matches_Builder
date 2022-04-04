@@ -1,0 +1,59 @@
+{
+  "name": "playable-template",
+  "version": "1.0.0",
+  "description": "Starting point for playable ads.",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "webpack serve --config webpack-voodoo.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "build:inline": "webpack --config webpack-inline.config.js",
+    "build:voodoo": "webpack --config webpack-voodoo.config.js",
+    "clean": "rimraf dist/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MassiveHeights/Playable.Template.git"
+  },
+  "author": "Borna Technology Ltd.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MassiveHeights/Playable.Template/issues"
+  },
+  "homepage": "https://borna-tech.com",
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
+    "@esotericsoftware/spine-core": "^4.2.1",
+    "@webpack-cli/serve": "1.6.1",
+    "babel-loader": "^8.2.3",
+    "babel-minify": "0.5.1",
+    "black-engine": "^0.5.16",
+    "black-spine": "^1.0.0",
+    "generate-file-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "img-optimize-loader": "1.0.7",
+    "json-perf-loader": "1.1.0",
+    "rimraf": "^3.0.2",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "5.8.0",
+    "webpack-strip": "^0.1.0",
+    "yargs": "17.3.1",
+    "zip-webpack-plugin": "4.0.1"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "18.6.4",
+    "add-asset-html-webpack-plugin": "3.2.0",
+    "babel-polyfill": "^6.26.0",
+    "cannon": "^0.6.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "3.21.0",
+    "html-replace-webpack-plugin": "2.6.0",
+    "html-webpack-inline-source-plugin-x": "1.0.6",
+    "remove-files-webpack-plugin": "1.5.0",
+    "planck-js": "^0.3.23"
+  }
+}
