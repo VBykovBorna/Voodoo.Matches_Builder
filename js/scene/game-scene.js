@@ -1,10 +1,19 @@
-import {DisplayObject, FontAlign, FontStyle, FontWeight, GameObject, MessageDispatcher, TextField} from "black-engine";
+import {DisplayObject, FontAlign, FontStyle, FontWeight, GameObject, Graphics, MessageDispatcher, TextField} from "black-engine";
+import Debugger from "../physics/debugger";
+import Physics from '../physics/physics';
+import Map from "../objects/map";
 
 export default class GameScene extends GameObject {
   constructor() {
     super();
 
     this.events = new MessageDispatcher(false);
+    this._isPaused = false;
+
+    this._physics = null;
+    this._debugger = null;
+    this._bg = null;
+    this._map = null;
 
     this._init();
   }
@@ -22,7 +31,10 @@ export default class GameScene extends GameObject {
   }
 
   _init() {
+    this._initPhysics();
+
     this._initBg();
+    this._initMap();
 
     this.events.on('tap', () => {
       this._onTap();
@@ -30,34 +42,35 @@ export default class GameScene extends GameObject {
   }
 
   _initBg() {
-    const text = this._text = new TextField(
-      'Hello world!',
-      "Baloo",
-      0xffffff,
-      30,
-      FontStyle.NORMAL,
-      FontWeight.NORMAL,
-      5,
-      0x010d55, 
-    );
+    
+  }
 
-    text.align = FontAlign.CENTER;
-    text.alignPivotOffset();
-    text.y = 1;
+  _initMap() {
+    const map = this._map = new Map(this._physics);
+    this.add(map);
+  }
 
-    this.add(text);
+  _initPhysics() {
+    this._physics = new Physics();
 
-    text.x = 300;
-    text.y = 300;
+    const debug = this._debugger = new Debugger(this._physics.world);
+    debug.isActive = true;
+    this.add(debug);
   }
 
   _onTap() {
-    console.log('tap')
+    // console.log('tap')
   }
 
   update(dt) {
     if (this._isPaused)
       return;
 
+    this._physics.update();
+    this._debugger.update();
+  }
+
+  onResize() {
+    this._map.onResize();
   }
 }

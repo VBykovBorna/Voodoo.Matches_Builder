@@ -53,7 +53,7 @@
     "core-js": "3.21.0",
     "html-replace-webpack-plugin": "2.6.0",
     "html-webpack-inline-source-plugin-x": "1.0.6",
-    "remove-files-webpack-plugin": "1.5.0",
-    "planck-js": "^0.3.23"
+    "planck-js": "^0.3.23",
+    "remove-files-webpack-plugin": "1.5.0"
   }
 }

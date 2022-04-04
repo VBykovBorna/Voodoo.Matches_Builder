@@ -48,6 +48,9 @@ export default class Game extends BaseGame {
       this._gameStarted = true;
       this._onPlayerInteraction(m, p);
     });
+
+    Black.stage.on("resize", () => this._onResize());
+    this._onResize()
   }
 
   // Calls from ICE API or first click
@@ -131,11 +134,13 @@ export default class Game extends BaseGame {
       this._startGame();
     }
 
-    // this._gameScene.update(dt);
+    this._gameScene.update(dt);
   }
 
   _onResize() {
     super._onResize();
+
+    this._gameScene?.onResize();
   }
 
   _onRender() {

@@ -1,6 +1,6 @@
 import * as planck from 'planck-js';
 import PhysicsOption from './physics-options';
-// import Update from './update';
+import Update from './update';
 
 export default class Physics {
   constructor() {
@@ -27,6 +27,6 @@ export default class Physics {
     const { world } = this;
 
     this.updatePhysics = new Update(world, planck);
-    new Collider(world, planck);
+    // new Collider(world, planck);
   }
 }
