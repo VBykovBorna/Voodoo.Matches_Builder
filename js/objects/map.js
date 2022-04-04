@@ -8,52 +8,56 @@ export default class Map extends DisplayObject {
     super();
 
     this._physics = physics;
+    this._s = PhysicsOption.worldScale;
 
     this._init();
   }
 
   _init() {
     this._initMatches();
-    // this._initGround();
+    this._initGround();
   }
 
   _initGround() {
-    const ground = this._ground = this._physics.world.createBody();
-    ground.createFixture(planck.Edge(planck.Vec2(-40.0, 0.0), planck.Vec2(40.0, 0.0)), 0.0);
+    const ground = this._ground = this._physics.world.createBody(planck.Vec2(0, 0));
+    const width = 1000;
+    const height = 20;
+    const s = this._s;
+
+    ground.createFixture(planck.Box(width/s, height/s));
 
     const bounds = Black.stage.bounds;
-    const groundX = bounds.center().x;
-    const groundY = bounds.bottom;
+    const groundX = bounds.center().x / s;
+    const groundY = (bounds.bottom - 100) / s;
 
-    // const pos = planck.Vec2(groundX * 10, groundY * 30);
-
-    // ground.setPosition(pos)
+    ground.setPosition(planck.Vec2(groundX, groundY));
   }
 
   _initMatches() {
-    const match = new Match(this._physics);
-    this.add(match);
+    const count = 10;
 
-    const bounds = Black.stage.bounds;
-    const groundX = 200; //bounds.center().x;
-    const groundY = 600; //bounds.bottom;
-
-    // const pos = planck.Vec2(300, 300);
-    const pos = planck.Vec2(groundX, groundY);
-    match.setPos(pos);
+    for (let i = 0; i < count; i++) {
+      const match = new Match(this._physics);
+      this.add(match);
+  
+      const bounds = Black.stage.bounds;
+      const groundX = 100 + 30 * i; //bounds.center().x;
+      const groundY = 300; //bounds.bottom;
+  
+      // const pos = planck.Vec2(300, 300);
+      const pos = planck.Vec2(groundX, groundY);
+      match.setPos(pos);
+    }
   }
 
   onResize() {
     const { _ground: ground } = this;
     const bounds = Black.stage.bounds;
 
-    const s = PhysicsOption.worldScale;
-    const groundX = bounds.center().x / s;
-    const groundY = bounds.bottom / s;
+    // const s = PhysicsOption.worldScale;
+    // const groundX = bounds.center().x / s;
+    // const groundY = (bounds.bottom - 100) / s;
 
     // ground.setPosition(planck.Vec2(groundX, groundY));
-
-    // ground.x = groundX;
-    // ground.y = groundY;
   }
 }

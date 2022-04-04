@@ -9,7 +9,7 @@ export default class Match extends DisplayObject {
     this._physics = physics;
 
     this._width = 10;
-    this._height = 80;
+    this._height = 100;
 
     this._view = null;
     this._body = null;
@@ -56,16 +56,21 @@ export default class Match extends DisplayObject {
     const height = this._height;
     const s = PhysicsOption.worldScale;
 
-    const body = this._body = this._physics.world.createDynamicBody();
-    const fixture = body.createFixture(planck.Box(width * 0.5/s, height * 0.5/s), {
-      friction: 0.5,
-      restitution: 0.05,
-      isSensor: true
+    const body = this._body = this._physics.world.createDynamicBody(planck.Vec2(0, 0));
+    body.createFixture(planck.Box(width * 0.5/s, height * 0.5/s), {
+      friction: 20.5,
+      restitution: 0.3,
+      density: 0.1,
     });
 
-    body.setGravityScale(0.3);
+    const mass = Math.random() * 0.4 + 0.3;
+    body.setGravityScale(mass);
     body.view = this._view;
     body.setUserData(this._view);
-    body.setActive(false);
+    // body.setActive(false);
+    const angle = Math.random()* 20;
+    body.setAngle(angle);
+
+    // fixture.setSensor(true);
   }
 }
