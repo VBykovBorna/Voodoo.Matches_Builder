@@ -1,9 +1,9 @@
-import {AssetManager, GameObject, Black, Asset, AssetType, Texture, LoaderType, AtlasTexture} from 'black-engine';
+import { AssetManager, GameObject, Black, Asset, AssetType, Texture, LoaderType, AtlasTexture } from 'black-engine';
 import AtlasTextureObjAsset from 'js/kernel/atlas-texture-object-asset';
 import localization from 'js/localization';
-import {stringsDataStr} from './data/stringsData';
+import { stringsDataStr } from './data/stringsData';
 import Game from 'js/states/game';
-import {CreativeWrapper} from "./libs/wrapper/creative-wrapper";
+import { CreativeWrapper } from "./libs/wrapper/creative-wrapper";
 
 // Models
 import character from 'assets/models/character.glb';
@@ -23,6 +23,8 @@ import cta_bg from 'assets/cta/bg.jpg';
 //Black atlas
 import atlas from './../assets/atlas.png';
 import atlasData from '../assets/atlas.json';
+import matches_assets from './../assets/assets.png';
+import matches_assets_data from '../assets/assets.json';
 
 //Sounds
 import sound_throw from 'assets/sounds/throw_01.mp3';
@@ -47,6 +49,7 @@ export class Loader extends GameObject {
     //Black/UI
     assets.enqueueImage('cta_bg', cta_bg);
     assets.enqueueAtlasObj('assets', atlas, atlasData);
+    assets.enqueueAtlasObj('matches_assets', matches_assets, matches_assets_data);
 
     //sounds
     assets.enqueueSound('bg_music', sound_bg_music);
